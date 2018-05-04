@@ -67,3 +67,11 @@
 * arcTo(x1,y1,x2,y2,radius)  两个切点坐标和圆弧半径
 
 ![arc1](./images/edu10-2.jpeg-normal.jpg)
+
+## Bézier curve 贝塞尔曲线
+
+* context.quadraticCurveTo(cpx,cpy,x,y); 二次贝塞尔曲线
+  * 一个控制点（cpx, cpy），以及一个终点(x, y)
+
+* context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y); 三次贝塞尔曲线
+  * 两个控制点，以及一个终点
