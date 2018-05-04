@@ -1,0 +1,88 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>基础api练习，</title>
+</head>
+
+<body>
+  <div id="canvas-warp">
+    <canvas id="canvas" style="position: absolute;z-index: 100;border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+      你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+    <canvas id="canvas1" style="position: absolute;z-index: 101;border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+      你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+  </div>
+</body>
+<script>
+  window.onload = function () {
+    var canvas = document.getElementById("canvas");
+    var canvas1 = document.getElementById("canvas1");
+    canvas.width = 432;
+    canvas.height = 768;
+    canvas1.width = 432;
+    canvas1.height = 768;
+    var context = canvas.getContext("2d");
+    var context1 = canvas1.getContext("2d");
+    drawOtherChat(context1, 50, 150, 150, 50);
+    drawMyChat(context1, 250, 250, 150, 50);
+
+    var img = new Image();
+    img.src = "./images/wx_background.png";
+    img.onload = function () {
+      var pattern = context.createPattern(img, "repeat");
+      context.fillStyle = pattern;
+      context.fillRect(0, 0, 432, 768);
+    }
+  }
+
+  function drawOtherChat(ctx, x, y, width, height) {
+    ctx.beginPath();
+    ctx.arc(x + 5, y, 5, Math.PI, Math.PI / 2 * 3);
+    ctx.lineTo(x + width + 5, y - 5);
+    ctx.arc(x + width + 5, y, 5, Math.PI / 2 * 3, Math.PI * 2);
+    ctx.lineTo(x + width + 10, y + height);
+    ctx.arc(x + width + 5, y + height, 5, 0, Math.PI / 2);
+    ctx.lineTo(x + 5, y + height + 5);
+    ctx.arc(x + 5, y + height, 5, Math.PI / 2, Math.PI);
+    ctx.lineTo(x, y + 20);
+    ctx.lineTo(x - 10, y + 15);
+    ctx.lineTo(x, y + 10);
+    ctx.lineJoin = "miter";
+    ctx.closePath();
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+
+    ctx.fillStyle = "white";
+    ctx.fill();
+  }
+
+  function drawMyChat(ctx, x, y, width, height) {
+    ctx.beginPath();
+    ctx.arc(x + 5, y, 5, Math.PI, Math.PI / 2 * 3);
+    ctx.lineTo(x + width + 5, y - 5);
+    ctx.arc(x + width + 5, y, 5, Math.PI / 2 * 3, Math.PI * 2);
+    ctx.lineTo(x + width + 10, y + 10);
+    ctx.lineTo(x + width + 20, y + 15);
+    ctx.lineTo(x + width + 10, y + 20);
+    ctx.lineJoin = "miter";
+    ctx.arc(x + width + 5, y + height, 5, 0, Math.PI / 2);
+    ctx.lineTo(x + 5, y + height + 5);
+    ctx.arc(x + 5, y + height, 5, Math.PI / 2, Math.PI);
+    ctx.closePath();
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#99e54e";
+    ctx.stroke();
+
+    ctx.fillStyle = "#99e54e";
+    ctx.fill();
+  }
+</script>
+
+</html>
